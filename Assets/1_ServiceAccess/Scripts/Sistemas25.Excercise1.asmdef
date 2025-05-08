@@ -1,0 +1,16 @@
+{
+    "name": "Sistemas25.Excercise1",
+    "rootNamespace": "Excercise1",
+    "references": [
+        "GUID:ba3c97d323d3c9c4faa96ee25a058ea9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
