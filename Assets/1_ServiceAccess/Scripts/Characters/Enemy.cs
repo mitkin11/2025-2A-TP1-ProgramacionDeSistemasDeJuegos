@@ -16,13 +16,15 @@ namespace Excercise1
         private void Awake()
             => _logTag = $"{name}({nameof(Enemy).Colored("#555555")}):";
 
-        protected override void OnEnable()
+        private void Start()
         {
-            base.OnEnable();
-            //TODO: Get the reference to the player.
+            var registry = FindObjectOfType<CharacterService>() as ICharacterRegistry;
+             _player = (registry as CharacterService)?.GetById(playerId);
+
             if (_player == null)
                 Debug.LogError($"{_logTag} Player not found!");
         }
+
 
         private void Update()
         {

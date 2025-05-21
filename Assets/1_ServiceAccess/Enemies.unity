@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 887502568}
   - component: {fileID: 887502567}
   - component: {fileID: 887502566}
+  - component: {fileID: 887502570}
   - component: {fileID: 887502569}
   m_Layer: 0
   m_Name: Enemy
@@ -398,6 +399,19 @@ MonoBehaviour:
   id: Enemy
   speed: 4
   playerId: Player
+--- !u!114 &887502570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887502564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f7fde7eaa58c444afd391f497be506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registrySource: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

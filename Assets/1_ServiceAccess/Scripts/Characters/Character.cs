@@ -7,14 +7,9 @@ namespace Excercise1
     {
         [SerializeField] protected string id;
 
-        protected virtual void OnEnable()
-        {
-            //TODO: Add to CharacterService. The id should be the given serialized field. 
-        }
 
-        protected virtual void OnDisable()
-        {
-            //TODO: Remove from CharacterService.
-        }
+        public string Id => id;
+        public Transform transform => base.transform;
+
     }
 }

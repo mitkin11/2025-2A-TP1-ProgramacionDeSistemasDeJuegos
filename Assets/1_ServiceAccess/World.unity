@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 42128349}
   - component: {fileID: 42128348}
   - component: {fileID: 42128347}
+  - component: {fileID: 42128351}
   - component: {fileID: 42128350}
   m_Layer: 0
   m_Name: Player
@@ -222,6 +223,19 @@ MonoBehaviour:
   id: Player
   frequency: 4
   amplitude: 3
+--- !u!114 &42128351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42128345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f7fde7eaa58c444afd391f497be506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  registrySource: {fileID: 0}
 --- !u!1 &1689902148
 GameObject:
   m_ObjectHideFlags: 0

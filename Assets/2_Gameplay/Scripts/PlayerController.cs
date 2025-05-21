@@ -4,19 +4,23 @@ using UnityEngine.InputSystem;
 namespace Gameplay
 {
     [RequireComponent(typeof(Character))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IJumpController
     {
         [SerializeField] private InputActionReference moveInput;
         [SerializeField] private InputActionReference jumpInput;
         [SerializeField] private float airborneSpeedMultiplier = .5f;
         //TODO: This booleans are not flexible enough. If we want to have a third jump or other things, it will become a hazzle.
-        private bool _isJumping;
-        private bool _isDoubleJumping;
+        //private bool _isJumping;
+        //private bool _isDoubleJumping;
         private Character _character;
         private Coroutine _jumpCoroutine;
+        private JumpState _currentJumpState;
 
         private void Awake()
-            => _character = GetComponent<Character>();
+        {
+             _character = GetComponent<Character>();
+            _currentJumpState = new SingleJumpState(this);
+        }
 
         private void OnEnable()
         {
@@ -42,28 +46,18 @@ namespace Gameplay
 
         private void HandleMoveInput(InputAction.CallbackContext ctx)
         {
-            var direction = ctx.ReadValue<Vector2>().ToHorizontalPlane();
-            if (_isJumping || _isDoubleJumping)
-                direction *= airborneSpeedMultiplier;
+            var direction = ctx.ReadValue<Vector2>().ToHorizontalPlane();            
+            direction *= airborneSpeedMultiplier;
             _character?.SetDirection(direction);
         }
 
         private void HandleJumpInput(InputAction.CallbackContext ctx)
         {
             //TODO: This function is barely readable. We need to refactor how we control the jumping
-            if (_isJumping)
-            {
-                if (_isDoubleJumping)
-                    return;
-                RunJumpCoroutine();
-                _isDoubleJumping = true;
-                return;
-            }
-            RunJumpCoroutine();
-            _isJumping = true;
+             _currentJumpState?.HandleJump();
         }
 
-        private void RunJumpCoroutine()
+        public void RunJumpCoroutine()
         {
             if (_jumpCoroutine != null)
                 StopCoroutine(_jumpCoroutine);
@@ -76,10 +70,14 @@ namespace Gameplay
             {
                 if (Vector3.Angle(contact.normal, Vector3.up) < 5)
                 {
-                    _isJumping = false;
-                    _isDoubleJumping = false;
+                    _currentJumpState.OnLanding();
                 }
             }
+        }
+
+        public void SetJumpState(JumpState state)
+        {
+            _currentJumpState = state;
         }
     }
 }
